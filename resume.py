@@ -1,6 +1,5 @@
 import pandas as pd 
 import pdfplumber as plu
-import numpy as np
 
 class ResumeManager:
     def __init__(self, resume_file):
