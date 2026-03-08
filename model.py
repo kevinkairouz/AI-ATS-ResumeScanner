@@ -1,8 +1,29 @@
 import pandas as pd 
-from pypdf import PdfReader  
+import pdfplumber as plu
 import numpy as np
 
-def getText(pdf): 
+class ResumeManager:
+
+    def __init__(self, resume_file):
+        self.resume_file = resume_file
+
+    def getText(self, pdf): 
+        with plu.open(pdf) as resume: 
+            file_info = ""
+            for page in resume.pages:  
+                file_info += page.extract_text_simple() 
+            return file_info 
+
+
+
+
+
+
+
+
+    
+
+
 
 
 
