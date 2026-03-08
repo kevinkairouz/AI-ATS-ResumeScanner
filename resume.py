@@ -1,8 +1,9 @@
 import pandas as pd 
 import pdfplumber as plu
 
+
 class ResumeManager:
-    
+
     def __init__(self):
         pass
     def getText(self, pdf): 

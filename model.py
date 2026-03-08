@@ -21,10 +21,6 @@ Y = df["Category"]
 cv = CountVectorizer(stop_words="english") 
 tf = TfidfVectorizer(stop_words="english") 
 X = cv.fit_transform(X) 
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, stratify=Y, random_state=42, test_size=0.3)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, stratify=Y, random_state=42, test_size=0.3) 
 
-rf = RandomForestClassifier() 
-lr = LogisticRegression() 
-dt = DecisionTreeClassifier() 
-kn = KNeighborsClassifier() 
 
