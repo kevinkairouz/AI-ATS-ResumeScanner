@@ -13,7 +13,7 @@ class ResumeManager:
             return file_info 
     
     def convertToDF(self, pdf_string): 
-        df = pd.DataFrame({"Resume": [pdf_string]}) 
+        df = pd.DataFrame({"Resume": [pdf_string], "class": []}) 
         return df 
 
     def concatDF(self, df1, df2): 
