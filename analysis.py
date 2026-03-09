@@ -18,10 +18,14 @@ rows_to_drop = df[(df["Category"] == "ADVOCATE") | (df["Category"] == "AGRICULTU
                   (df["Category"] == "AVIATION") | (df["Category"] == "BPO") | (df["Category"] == "CHEF") |
                   (df["Category"] == "CONSTRUCTION") | (df["Category"] == "DESIGNER") | (df["Category"] == "FITNESS") |
                   (df["Category"] == "HEALTHCARE") | (df["Category"] == "TEACHER") | (df["Category"] == "CONSULTANT") 
-                  | (df["Category"] == "BANKING") | (df["Category"] == "ACCOUNTANT") | (df["Category"] == "DIGITAL-MEDIA") | (df["Category"] == "ARTS")
-                  ]  
+                  | (df["Category"] == "BANKING") | (df["Category"] == "ACCOUNTANT") | (df["Category"] == "ARTS")
+                  ]   
 
-df = df.drop(rows_to_drop.index, axis=0)
+merge_marketing_categories = df[(df["Category"] == "DIGITAL-MEDIA") | (df["Category"] == "PUBLIC-RELATIONS")]
+
+df = df.drop(rows_to_drop.index, axis=0) 
+
+df.loc[merge_marketing_categories.index, "Category"] = "MARKETING"
 print(df.groupby("Category").count()) 
 
 X = df["Resume_str"] 
@@ -29,18 +33,19 @@ Y = df["Category"]
 
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.3,random_state=42)
 
-tf = TfidfVectorizer(stop_words="english", max_features=5000,ngram_range=(1,2)) 
+tf = TfidfVectorizer(stop_words="english",max_features=2600,ngram_range=(1,2)) 
 cv = CountVectorizer(stop_words="english", max_features=2600)
 X_train_data = tf.fit_transform(X_train) 
 X_test_data = tf.transform(X_test)  
 
-model = RandomForestClassifier(n_estimators = 500, max_depth = 30) 
+model = RandomForestClassifier(n_estimators=300,max_depth=60) 
 
-model.fit(X_train_data, Y_train)  
+
+model.fit(X_train_data, Y_train)   
+print(model.score(X_test_data,Y_test))
 Ypred = model.predict(X_test_data)
 print(classification_report(Y_test,Ypred))
 
-print(model.score(X_test_data,Y_test))
 
 
 
