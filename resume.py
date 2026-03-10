@@ -1,14 +1,20 @@
 import pandas as pd 
-import pdfplumber as plu
+import pdfplumber as plu 
+from pypdf import PdfReader 
+import pypdf as py 
 
+def getText(pdf):   
 
-def getText(self, pdf): 
-    with plu.open(f"resumes/{pdf}") as resume:  
-        file_info = ""
-        for page in resume.pages:  
-            file_info += page.extract_text_simple() 
+    reader = PdfReader(pdf) 
+    file_info = ""
+    for page in reader.pages: 
+        file_info += page.extract_text() 
+    return file_info 
 
-    
+     
+
+#for testing purpose
+# print(getText("sample.pdf"))
 
 
 

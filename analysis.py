@@ -18,21 +18,17 @@ rows_to_drop = df[(df["Category"] == "ADVOCATE") | (df["Category"] == "AGRICULTU
                   (df["Category"] == "HEALTHCARE") | (df["Category"] == "TEACHER") | (df["Category"] == "CONSULTANT") 
                   | (df["Category"] == "BANKING") | (df["Category"] == "ACCOUNTANT") | (df["Category"] == "ARTS") 
                   
-                  ]   
-
+                  ] 
 merge_marketing_categories = df[(df["Category"] == "DIGITAL-MEDIA") | (df["Category"] == "PUBLIC-RELATIONS")]
 merge_into_business = df[(df["Category"] == "SALES") | (df["Category"] == "BUSINESS-DEVELOPMENT")]
 df = df.drop(rows_to_drop.index, axis=0) 
 
 df.loc[merge_marketing_categories.index, "Category"] = "MARKETING" 
 df.loc[merge_into_business.index, "Category"] = "BUSINESS"
-print(df.groupby("Category").count()) 
-
 X = df["Resume_str"] 
 Y = df["Category"] 
 
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.3,stratify=Y, random_state=42) 
-
 tf = TfidfVectorizer(stop_words="english",max_features=3000,ngram_range=(1,2)) 
 cv = CountVectorizer(stop_words="english", max_features=2600)
 X_train_data = tf.fit_transform(X_train) 
@@ -46,22 +42,13 @@ model.fit(X_train_data, Y_train)
 # print(model.score(X_test_data,Y_test))
 # Ypred = model.predict(X_test_data)
 # print(classification_report(Y_test,Ypred))
-
-class PredictionManager: 
-
-    resumeParser = resume 
+def makePrediction(file): 
+    resume_data = resume.getText(file)  
+    data = tf.transform(resume_data) 
+    classification = model.predict(data) 
+    return classification 
      
-      
-     
 
-    def makePrediction(file): 
-        resume.getText(file) 
-          
-        return None 
-
-        # resume_data = tf.transform(resume) 
-        # predictedCategory = model.predict(resume_data) 
-        # return predictedCategory 
 
 
 
