@@ -1,6 +1,5 @@
 import pandas as pd 
 import resume 
-import matplotlib.pyplot as plt 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier  
 from sklearn.feature_extraction.text import TfidfVectorizer   
@@ -8,7 +7,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split 
 from sklearn.model_selection import GridSearchCV  
 from sklearn.model_selection import RandomizedSearchCV
-from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 df = pd.read_csv("datasets/Resume.csv")
@@ -42,13 +40,6 @@ X_test_data = tf.transform(X_test)
 
 
 model = RandomForestClassifier(n_estimators=400, max_depth=100)  
-
-# rf_model = GridSearchCV(model, param_grid) 
-
-# rf_model.fit(X_train_data,Y_train) 
-# print(rf_model.best_params_)
-# print(rf_model.best_score_)
-
 
 model.fit(X_train_data, Y_train)   
 print(model.score(X_test_data,Y_test))
