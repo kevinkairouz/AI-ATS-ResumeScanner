@@ -2,6 +2,7 @@ import pandas as pd
 import resume 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier  
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer   
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split 
@@ -36,17 +37,22 @@ X_test_data = tf.transform(X_test)
 
 
 
-model = RandomForestClassifier(n_estimators=400, max_depth=100)  
-
-model.fit(X_train_data, Y_train)   
+model = RandomForestClassifier(n_estimators=400, max_depth=100) 
+model.fit(X_train_data, Y_train) 
 # print(model.score(X_test_data,Y_test))
-# Ypred = model.predict(X_test_data)
-# print(classification_report(Y_test,Ypred))
-def makePrediction(file): 
-    resume_data = resume.getText(file)  
-    data = tf.transform(resume_data) 
-    classification = model.predict(data) 
-    return classification 
+
+
+class CategoryManager: 
+    def makePrediction(self, file): 
+        resume_data = resume.getText(file)  
+        data = tf.transform(resume_data) 
+        classification = model.predict(data) 
+        return classification 
+    
+    def displaySampleReport(self): 
+        res = self.makePrediction(Y_test)
+        print(classification_report(Y_test,res))
+        return None
      
 
 
