@@ -17,6 +17,8 @@ cleaned_df.loc[rows_make_analyst.index, "Category"] = "Business Analyst"
 cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity"
 
 
+
+
 print(cleaned_df.groupby("Category").count())
 X = cleaned_df["Resume"] 
 Y = cleaned_df["Category"]
@@ -28,7 +30,8 @@ tf = TfidfVectorizer(stop_words="english", max_features=3000,ngram_range=(1,2))
 cv = CountVectorizer(stop_words="english", max_features=3000)
 X_train_data = tf.fit_transform(X_train) 
 X_test_data = tf.transform(X_test) 
-model.fit(X_train_data, Y_train) 
+model.fit(X_train_data, Y_train)  
+
 # print(model.score(X_test_data,Y_test))  
 
 class TechRoleManager: 

@@ -41,7 +41,6 @@ model = RandomForestClassifier(n_estimators=400, max_depth=100)
 model.fit(X_train_data, Y_train) 
 # print(model.score(X_test_data,Y_test))
 
-
 class CategoryManager: 
     def makePrediction(self, file): 
         resume_data = resume.getText(file)  
