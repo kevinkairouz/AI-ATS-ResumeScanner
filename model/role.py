@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
-df = pd.read_csv("datasets/roles.csv") 
+df = pd.read_csv("../data/roles.csv") 
 cleaned_df = df[(df["Category"] == "Web Designing")|(df["Category"] == "Network Security Engineer") |
                 (df["Category"] == "Business Analyst") | (df["Category"] == "Database") | (df["Category"] == "Data Science") |
                 (df["Category"] == "Python Developer")].copy()
@@ -14,7 +14,8 @@ rows_make_analyst = cleaned_df[(cleaned_df["Category"] == "Python Developer") | 
 rows_make_cyber = cleaned_df[cleaned_df["Category"] == "Network Security Engineer"]
 
 cleaned_df.loc[rows_make_analyst.index, "Category"] = "Business Analyst"  
-cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity"
+cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity" 
+
 
 
 
@@ -36,8 +37,9 @@ model.fit(X_train_data, Y_train)
 
 class TechRoleManager: 
 
-    def predictRole(resume): 
-        role = model.predict(resume) 
+    def predictRole(self, resume): 
+        resume_data = tf.transform([resume]) 
+        role = model.predict(resume_data) 
         return role
 
 

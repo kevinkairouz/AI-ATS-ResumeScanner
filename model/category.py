@@ -1,5 +1,5 @@
-import pandas as pd 
-from model.resume import ResumeManager
+import pandas as pd
+import resume 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier  
 from sklearn.neighbors import KNeighborsClassifier
@@ -10,7 +10,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import classification_report
 
-df = pd.read_csv("datasets/Resume.csv")
+df = pd.read_csv("../data/Resume.csv")
 df = df.drop(["ID","Resume_html"], axis=1) 
 
 rows_to_drop = df[(df["Category"] == "ADVOCATE") | (df["Category"] == "AGRICULTURE") | (df["Category"] == "APPAREL") | (df["Category"] == "AUTOMOBILE") | 
@@ -22,10 +22,14 @@ rows_to_drop = df[(df["Category"] == "ADVOCATE") | (df["Category"] == "AGRICULTU
                   ] 
 merge_marketing_categories = df[(df["Category"] == "DIGITAL-MEDIA") | (df["Category"] == "PUBLIC-RELATIONS")]
 merge_into_business = df[(df["Category"] == "SALES") | (df["Category"] == "BUSINESS-DEVELOPMENT")]
-df = df.drop(rows_to_drop.index, axis=0) 
+df = df.drop(rows_to_drop.index, axis=0)  
+
+
 
 df.loc[merge_marketing_categories.index, "Category"] = "MARKETING" 
-df.loc[merge_into_business.index, "Category"] = "BUSINESS"
+df.loc[merge_into_business.index, "Category"] = "BUSINESS" 
+
+print(df.groupby("Category").count())
 X = df["Resume_str"] 
 Y = df["Category"] 
 
@@ -42,10 +46,8 @@ model.fit(X_train_data, Y_train)
 # print(model.score(X_test_data,Y_test))
 
 class CategoryManager: 
-    def makePrediction(self, file):  
-        r = ResumeManager()
-        resume_data = r.getText(file)  
-        data = tf.transform(resume_data) 
+    def makePrediction(self, text):   
+        data = tf.transform([text]) 
         classification = model.predict(data) 
         return classification 
     
