@@ -1,5 +1,5 @@
 import pandas as pd 
-import resume 
+from model.resume import ResumeManager
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier  
 from sklearn.neighbors import KNeighborsClassifier
@@ -42,8 +42,9 @@ model.fit(X_train_data, Y_train)
 # print(model.score(X_test_data,Y_test))
 
 class CategoryManager: 
-    def makePrediction(self, file): 
-        resume_data = resume.getText(file)  
+    def makePrediction(self, file):  
+        r = ResumeManager()
+        resume_data = r.getText(file)  
         data = tf.transform(resume_data) 
         classification = model.predict(data) 
         return classification 
