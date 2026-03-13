@@ -1,5 +1,8 @@
 from flask import Flask, jsonify  
-from model import
+from model.resume import ResumeManager 
+from model.category import CategoryManager 
+from model.role import TechRoleManager 
+from model.score import 
 
 
 app = Flask(__name__) 

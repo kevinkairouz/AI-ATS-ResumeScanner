@@ -6,7 +6,7 @@ import pypdf as py
 
 class ResumeManager: 
 
-    def getText(pdf):   
+    def getText(self, pdf):   
         reader = PdfReader(pdf) 
         file_info = ""
         for page in reader.pages: 
