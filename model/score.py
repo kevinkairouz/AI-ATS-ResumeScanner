@@ -1,4 +1,5 @@
-import pandas as pd   
+import pandas as pd  
+#excess file not needed 
 
 class ScoreManager: 
     def isAnalyst(self, resume):  

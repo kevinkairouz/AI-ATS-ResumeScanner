@@ -21,16 +21,11 @@ def predict(resume):
     else:  
         return classification[0]
     
-    
 r_m = ResumeManager()
-
-
-      
 
 @app.route("/") 
 def greet(): 
     return "Hello There!!" 
-
 
 @app.route("/uploadResume", methods = ["POST"]) 
 def upload(): 
@@ -42,10 +37,7 @@ def upload():
                 role = predict(pdf) 
                 return jsonify({"ROLE": role}) 
         else: 
-            flash("ERROR: NO FILE ATTACHED")
-
-
-
+            return "No file yet"
 
 app.run()
 
