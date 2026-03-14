@@ -23,6 +23,14 @@ class ScoreManager:
         else: 
             return False 
         
+    def isCyber(self, resume): 
+        resume = str(resume) 
+        resume = resume.lower() 
+        if "python" in resume or "sql" in resume or "linux" in resume: 
+            return True
+        else: 
+            return False
+        
 
     def isWebDev(self, resume):  
         resume = str(resume) 

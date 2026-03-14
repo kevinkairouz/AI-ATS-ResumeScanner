@@ -4,7 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
-df = pd.read_csv("../data/roles.csv") 
+df = pd.read_csv("data/roles.csv")  
+
+# print(df.groupby("Category").count())
 cleaned_df = df[(df["Category"] == "Web Designing")|(df["Category"] == "Network Security Engineer") |
                 (df["Category"] == "Business Analyst") | (df["Category"] == "Database") | (df["Category"] == "Data Science") |
                 (df["Category"] == "Python Developer")].copy()
@@ -20,7 +22,7 @@ cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity"
 
 
 
-print(cleaned_df.groupby("Category").count())
+# print(cleaned_df.groupby("Category").count())
 X = cleaned_df["Resume"] 
 Y = cleaned_df["Category"]
 
