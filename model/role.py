@@ -22,7 +22,7 @@ cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity"
 
 
 
-# print(cleaned_df.groupby("Category").count())
+print(cleaned_df.groupby("Category").count())
 X = cleaned_df["Resume"] 
 Y = cleaned_df["Category"]
 
