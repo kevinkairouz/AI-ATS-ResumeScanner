@@ -12,13 +12,16 @@ s = ScoreManager()
 o = NonTechRoleManager()
 
 tech_roles = ["BUSINESS","ENGINEERING","FINANCE","INFORMATION-TECHNOLOGY"]
+
 def testFunc():
-    txt = r.getText("resumesample1.pdf") 
+    txt = r.getText("sample2.pdf") 
     role = c.makePrediction(txt) 
     if role in tech_roles: 
         projxon_role = t.predictRole(txt) 
         return s.isFit(txt,projxon_role)
     else:  
         return o.is_Fit(txt, role)
+    
+print(testFunc())
 
 
