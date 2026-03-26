@@ -2,9 +2,9 @@ from flask import Flask, jsonify, request, flash
 from model.resume import ResumeManager 
 from model.category import CategoryManager 
 from model.role import TechRoleManager 
-from model.score import ScoreManager
+from model.score import ScoreManager 
 
-
+        
 app = Flask(__name__)  
 
 def predict(resume):  
@@ -18,7 +18,8 @@ def predict(resume):
     if classification[0] == "INFORMATION-TECHNOLOGY" or classification[0] == "BUSINESS" or classification[0] == ["ENGINEERING"]: 
         role = tmanager.predictRole(text) 
         return role        
-    else:  
+    else: 
+         
         return classification[0]
     
 r_m = ResumeManager()
@@ -28,7 +29,7 @@ def greet():
     return "Hello There!!" 
 
 @app.route("/uploadResume", methods = ["POST"]) 
-def upload(): 
+def upload():          
         if "file" in request.files: 
             pdf = request.files["file"] 
             if pdf.filename == "" or r_m.getText(pdf) == "": 
@@ -39,6 +40,16 @@ def upload():
         else: 
             return "No file yet"
 
+@app.route("/uploadResumes", methods = ["POST"]) 
+def uploadResumes(): 
+    files = request.args.getlist("file") 
+    roles = [] 
+    for file in files: 
+        role = predict(file) 
+        roles.append(role) 
+    return jsonify({"ROLES": roles})
+        
+        
 app.run()
 
 

@@ -1,7 +1,7 @@
 import pandas as pd 
 import pdfplumber as plu 
 from pypdf import PdfReader 
-import pypdf as py 
+
 
 
 class ResumeManager: 
