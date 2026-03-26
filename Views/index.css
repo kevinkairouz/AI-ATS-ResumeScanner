@@ -1,0 +1,10 @@
+#background{
+    background-color: cadetblue;
+
+} 
+#word{
+    background-color: whitesmoke;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
