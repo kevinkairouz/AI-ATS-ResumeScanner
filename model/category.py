@@ -28,7 +28,7 @@ df = df.drop(rows_to_drop.index, axis=0)
 
 df.loc[merge_marketing_categories.index, "Category"] = "MARKETING" 
 df.loc[merge_into_business.index, "Category"] = "BUSINESS" 
-
+#used for debugging purpose
 # print(df.groupby("Category").count())
 X = df["Resume_str"] 
 Y = df["Category"] 

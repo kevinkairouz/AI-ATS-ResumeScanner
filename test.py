@@ -8,12 +8,17 @@ from model.score import ScoreManager
 r = ResumeManager() 
 c = CategoryManager() 
 t = TechRoleManager()
-s = ScoreManager()
+s = ScoreManager() 
+o = NonTechRoleManager()
 
-txt = r.getText("sample.pdf") 
-role = c.makePrediction(txt)
-projxon_role = t.predictRole(txt) 
-print(projxon_role) 
-print(s.isFit(txt, projxon_role)) 
+tech_roles = ["BUSINESS","ENGINEERING","FINANCE","INFORMATION-TECHNOLOGY"]
+def testFunc():
+    txt = r.getText("resumesample1.pdf") 
+    role = c.makePrediction(txt) 
+    if role in tech_roles: 
+        projxon_role = t.predictRole(txt) 
+        return s.isFit(txt,projxon_role)
+    else:  
+        return o.is_Fit(txt, role)
 
 
