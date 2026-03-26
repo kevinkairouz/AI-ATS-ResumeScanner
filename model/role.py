@@ -21,8 +21,8 @@ cleaned_df.loc[rows_make_cyber.index, "Category"] = "Cybersecurity"
 
 
 
-
-print(cleaned_df.groupby("Category").count())
+#used for debugging purpose
+# print(cleaned_df.groupby("Category").count())
 X = cleaned_df["Resume"] 
 Y = cleaned_df["Category"]
 
@@ -42,7 +42,7 @@ class TechRoleManager:
     def predictRole(self, resume): 
         resume_data = tf.transform([resume]) 
         role = model.predict(resume_data) 
-        return role
+        return role[0]
 
 
 

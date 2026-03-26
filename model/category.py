@@ -46,7 +46,7 @@ class CategoryManager:
     def makePrediction(self, text):   
         data = tf.transform([text]) 
         classification = model.predict(data) 
-        return classification 
+        return classification[0] 
     
     def displaySampleReport(self): 
         res = self.makePrediction(Y_test)

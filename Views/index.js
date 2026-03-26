@@ -1,4 +1,5 @@
-function findFit(){
+function findFit(){ 
+    fetch
     
 
 }

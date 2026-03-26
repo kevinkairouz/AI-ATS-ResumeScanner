@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, request, flash
+from flask import Flask, jsonify, request
 from model.resume import ResumeManager 
 from model.category import CategoryManager 
 from model.role import TechRoleManager 
 from model.score import ScoreManager 
+from model.other_role import NonTechRoleManager
 
         
 app = Flask(__name__)  
@@ -12,15 +13,18 @@ def predict(resume):
     cmanager = CategoryManager() 
     tmanager = TechRoleManager() 
     smanager = ScoreManager() 
+    omanager = NonTechRoleManager() 
+
+    #TODO include score and nontechroleManager we may changed ScoreManagerNonTech 
 
     text = rmanager.getText(resume)  
     classification = cmanager.makePrediction(text) 
-    if classification[0] == "INFORMATION-TECHNOLOGY" or classification[0] == "BUSINESS" or classification[0] == ["ENGINEERING"]: 
+    if classification == "INFORMATION-TECHNOLOGY" or classification == "BUSINESS" or classification == "ENGINEERING": 
         role = tmanager.predictRole(text) 
         return role        
-    else: 
-         
-        return classification[0]
+    else:
+
+        return classification
     
 r_m = ResumeManager()
 

@@ -2,6 +2,19 @@ import pandas as pd
 #excess file not needed 
 
 class ScoreManager: 
+
+    def isFit(self, resume, role): 
+        match role: 
+            case "Business Analyst": 
+                return self.isAnalyst(resume) 
+            case "Web Designing": 
+                return self.isWebDev(resume) 
+            case "Cybersecurity": 
+                return self.isCyber(resume) 
+            case _: 
+                return False
+        
+
     def isAnalyst(self, resume):  
         resume = str(resume) 
         resume = resume.lower()  
