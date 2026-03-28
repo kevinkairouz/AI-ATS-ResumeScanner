@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report
 
 #V2 model will use the following new dataset (dataset.txt) 
 #For App.py we may have to change the filepath
-df = pd.read_csv("../data/Dataset.txt") 
+df = pd.read_csv("data/Dataset.txt") 
 
 
 #Cleaning Data
@@ -62,6 +62,8 @@ class CategoryManager:
         print(classification_report(Y_test,res))
         return None
      
+
+
 
 
 

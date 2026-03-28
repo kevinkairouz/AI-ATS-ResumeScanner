@@ -9,8 +9,8 @@ import mysql.connector as sql
 
 
         
-app = Flask(__name__)   
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+app = Flask(__name__)
+CORS(app)
 r_m = ResumeManager()
 
 def predict(resume):  
@@ -37,9 +37,10 @@ def predict(resume):
 
 def send_data(resume, classification): 
     inserted_data = (resume, classification)
-    db = sql.connect(root = "user", password = "Dominics1", host = "localhost", database = "resumes") 
+    # host = "localhost", user = "root", password = "Dominics1", database = "clients"
+    db = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "resumes")
     cursor = db.cursor() 
-    cursor.execute("insert into applicants values (%s, %s)")
+    cursor.execute("insert into applicants (resume,category_role) values (%s, %s)", inserted_data)
     db.commit() 
     return "COMPLETED DB TRANSACTION"
 
@@ -61,7 +62,7 @@ def upload():
         else: 
             return "No file yet"
 
-app.run(debug=True)
+app.run()
 #V1 will not include a list of resumes TBD feature
 # @app.route("/uploadResumes", methods = ["POST"])
 # @cross_origin()

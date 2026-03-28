@@ -1,27 +1,16 @@
 from model.category import CategoryManager 
-from model.other_role import NonTechRoleManager 
-from model.resume import ResumeManager 
-from model.role import TechRoleManager 
-from model.score import ScoreManager 
+from model.resume import ResumeManager
 
 
 r = ResumeManager() 
 c = CategoryManager() 
-t = TechRoleManager()
-s = ScoreManager() 
-o = NonTechRoleManager()
 
-tech_roles = ["BUSINESS","ENGINEERING","FINANCE","INFORMATION-TECHNOLOGY"]
 
-def testFunc():
-    txt = r.getText("sample2.pdf") 
-    role = c.makePrediction(txt) 
-    if role in tech_roles: 
-        projxon_role = t.predictRole(txt) 
-        return s.isFit(txt,projxon_role)
-    else:  
-        return o.is_Fit(txt, role)
-    
-print(testFunc())
+def testFunc(resume):  
+    text = r.getText(resume) 
+    return c.makePrediction(resume)
+
+print(testFunc("resumesample1.pdf"))
+
 
 
