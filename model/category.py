@@ -72,11 +72,11 @@ class CategoryManager:
     def makePrediction(self, text):   
         data = tf.transform([text])  
         y_predict_prba = model.predict_proba(data)
-        df = pd.DataFrame({"Classes": model.classes_, "Prob": y_predict_prba[0].round(4)}) 
-        df = df.sort_values(by="Prob", ascending=False) 
+        df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(2)}) 
+        df = df.sort_values(by="Match", ascending=False) 
         df = df[0:3] 
         print(df)
-        return Applicant(text, df["Classes"].iloc[0], df["Classes"].iloc[1], df["Classes"].iloc[2], df["Prob"].iloc[0], df["Prob"].iloc[1], df["Prob"].iloc[2])
+        return Applicant(text, df["Classes"].iloc[0], df["Classes"].iloc[1], df["Classes"].iloc[2], df["Match"].iloc[0], df["Match"].iloc[1], df["Match"].iloc[2])
 
 #for testing purpose
 c = CategoryManager() 
