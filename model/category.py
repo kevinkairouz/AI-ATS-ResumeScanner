@@ -72,7 +72,7 @@ class CategoryManager:
     def makePrediction(self, text):   
         data = tf.transform([text])  
         y_predict_prba = model.predict_proba(data)
-        df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(2)}) 
+        df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False) 
         df = df[0:3] 
         print(df)
