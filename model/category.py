@@ -10,7 +10,7 @@ from dataclasses import dataclass
 
 #V2 model will use the following new dataset (dataset.txt) 
 #For App.py we may have to change the filepath
-df = pd.read_csv("../data/Dataset.txt") 
+df = pd.read_csv("data/Dataset.txt") 
 
 
 #Cleaning Data

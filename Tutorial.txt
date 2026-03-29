@@ -1,0 +1,8 @@
+TODO: 
+
+BEFORE: FOCUS ON DB & EXCEL & WEB APP LATER JUST GET BLUEPRINTS WORKING and make sure files 
+work 
+
+AFTER WORK ON THE DB ASPECT AND WEB ASPECT, LEAVE EXCEL for later 
+
+But this gives the analysts a new dashboard to work on a candidiate dashboard

@@ -1,16 +1,9 @@
 from model.category import CategoryManager 
-from model.resume import ResumeManager
+from model.resume import ResumeManager 
 
-
-r = ResumeManager() 
 c = CategoryManager() 
+r = ResumeManager() 
 
-
-def testFunc(resume):  
-    text = r.getText(resume) 
-    return c.makePrediction(resume)
-
-print(testFunc("resumesample1.pdf"))
-
-
-
+txt = r.getText("sample2.pdf") 
+a = c.makePrediction(txt) 
+print(a)
