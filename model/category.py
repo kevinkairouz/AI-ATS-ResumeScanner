@@ -61,6 +61,8 @@ model.fit(X_train_data, Y_train)
 class Applicant:    
     PrimaryFit: str 
     Secondary: str 
+    PrimaryScore: float 
+    SecondaryScore: float 
 
 
 class CategoryManager: 
@@ -70,7 +72,7 @@ class CategoryManager:
         df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False)  
         # print(df)
-        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
+        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"], df.iloc[0]["Match"], df.iloc[1]["Match"])
 # for testing purpose
 # c = CategoryManager() 
 # c.makePrediction(X_test.iloc[4])
