@@ -62,7 +62,12 @@ def upload():
         else: 
             return "CANDIDATE REJECTED"
 
-
+@app.route("/display", methods = ["POST"]) 
+def display():
+    #TODO: will be same as uplaod however it is geared towards returning data 
+    # to frontend instead of sending data to PROJXON 
+     
+    return "" 
 app.run()
 
 
