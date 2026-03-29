@@ -58,15 +58,9 @@ model.fit(X_train_data, Y_train)
 #Gradient Boosting Benchmarked at 92.5% accuracy as of March 28th 
 
 @dataclass
-class Applicant:  
-    Resume: str  
+class Applicant:    
     PrimaryFit: str 
-    Secondary1: str 
-    Secondary2: str 
-    score1: float 
-    score2: float 
-    score3: float
-
+    Secondary: str 
 
 
 class CategoryManager: 
@@ -76,8 +70,7 @@ class CategoryManager:
         df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False)  
         # print(df)
-        return Applicant(text, df["Classes"].iloc[0], df["Classes"].iloc[1], df["Classes"].iloc[2], df["Match"].iloc[0], df["Match"].iloc[1], df["Match"].iloc[2])
-
+        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
 # for testing purpose
 # c = CategoryManager() 
 # c.makePrediction(X_test.iloc[4])
