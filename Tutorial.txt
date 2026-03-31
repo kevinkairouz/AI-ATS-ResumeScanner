@@ -1,8 +1,6 @@
 TODO: 
+1: Make BigQuery API Call to insert data into DB 
+2: Return the Data to the frontend and include animation (Web Development Part) 
 
-BEFORE: FOCUS ON DB & EXCEL & WEB APP LATER JUST GET BLUEPRINTS WORKING and make sure files 
-work 
-
-AFTER WORK ON THE DB ASPECT AND WEB ASPECT, LEAVE EXCEL for later 
-
-But this gives the analysts a new dashboard to work on a candidiate dashboard
+3: EXCEL IS BONUS BUT OFF THE TABLE SINCE NO VIABLE WAY TO PUT RESUMES/PDF 
+IN EXCEL SHEET
