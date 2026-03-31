@@ -19,9 +19,8 @@ from dataclasses import dataclass
 
 
 app = Flask(__name__) 
-CORS(app) 
-
-
+CORS(app)  
+app_model = Blueprint("app_model")
 
 
 
@@ -33,12 +32,12 @@ def predict(resume):
     return applicant 
     
 
-@app.route("/") 
+@app_model.route("/") 
 @cross_origin()
 def greet(): 
     return "Hello There!!" 
 
-@app.route("/uploadResume", methods = ["POST"]) 
+@app_model.route("/uploadResume", methods = ["POST"]) 
 @cross_origin()
 def upload():
     pdf = request.files["file"] 
@@ -57,15 +56,5 @@ def upload():
         # from function but web application will use it percisley the first_name, last_name and the roles 
          
         return True
-
-        
-
-@app.route("/display", methods = ["POST"]) 
-def display():
-    #TODO: will be same as uplaod however it is geared towards returning data 
-    # to frontend instead of sending data to PROJXON 
-     
-    return "" 
-
 
 
