@@ -5,15 +5,20 @@ from model.category import CategoryManager
 from dataclasses import dataclass 
 
 
-class Record: 
-    data: str 
+# @dataclass
+# class Record: #this is the record that we are sending to bigQuery
+#     first_name: str 
+#     last_name: str 
+#     primary_role: str 
+#     secondary_role: str 
+#     role_applied: str
+
   
 
 
 
 
 app = Flask(__name__) 
-app.register_blueprint("")
 CORS(app) 
 
 
@@ -46,21 +51,14 @@ def upload():
     if pdf.filename == "": 
         return "ERROR, INVALID FILENAME" 
     else: 
-        a = predict(pdf) 
-        #TODO test with your resume and see where the fits are and determine from there watch the 
-        #match rate % should be the and the logic for a candidate to show up on the sheet because all candidates
-        #will appear in bigQuery for analytics/dashboard purpose 
+        a = predict(pdf)  
+        #then get the first_name and last_name and the primrary_role turn that into a record 
+        # make the object and return it to frontend bc the job portal wont use what is returned
+        # from function but web application will use it percisley the first_name, last_name and the roles 
+         
+        return True
 
-        if role_applied == a.PrimaryFit: 
-            return "y"
-            #send to the sheet & db by using our Record Dataclass
-        elif role_applied == a.Secondary1 and a.score2 > 22.0: 
-            #send to the sheet & db by using our Record Dataclass
-            return "k"
-        elif role_applied == a.Secondary2 and a.score3 > 22.0: 
-            return "k" 
-        else: 
-            return "CANDIDATE REJECTED"
+        
 
 @app.route("/display", methods = ["POST"]) 
 def display():
@@ -68,6 +66,6 @@ def display():
     # to frontend instead of sending data to PROJXON 
      
     return "" 
-app.run()
+
 
 
