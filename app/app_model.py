@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 from model.resume import ResumeManager 
 from model.category import CategoryManager  
 from dataclasses import dataclass 
+from app.db import db 
 
 
 # @dataclass
@@ -50,7 +51,8 @@ def upload():
     if pdf.filename == "": 
         return "ERROR, INVALID FILENAME" 
     else: 
-        a = predict(pdf)  
+        a = predict(pdf) 
+          
         #then get the first_name and last_name and the primrary_role turn that into a record 
         # make the object and return it to frontend bc the job portal wont use what is returned
         # from function but web application will use it percisley the first_name, last_name and the roles 
