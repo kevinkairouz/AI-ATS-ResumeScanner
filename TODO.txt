@@ -1,6 +1,0 @@
-TODO: 
-1: Make BigQuery API Call to insert data into DB 
-2: Return the Data to the frontend and include animation (Web Development Part) 
-
-3: EXCEL IS BONUS BUT OFF THE TABLE SINCE NO VIABLE WAY TO PUT RESUMES/PDF 
-IN EXCEL SHEET

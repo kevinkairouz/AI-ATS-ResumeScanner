@@ -55,7 +55,7 @@ class CategoryManager:
         y_predict_prba = model.predict_proba(data)
         df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False)  
-        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"], df.iloc[0]["Match"], df.iloc[1]["Match"])
+        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
 
         
 
