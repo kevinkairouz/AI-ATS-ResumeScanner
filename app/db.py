@@ -5,10 +5,12 @@ from flask import Flask, Blueprint, request
 from flask_cors import CORS, cross_origin   
 import mysql.connector as sql
 
-db = Blueprint("db", __name__) 
+db = Blueprint("db", __name__)  
+CORS(db)
 
 
-db.route("/sendInfo", methods = ["POST"]) 
+@db.route("/sendInfo", methods = ["POST"])  
+@cross_origin()
 def sendInfo():   
     conn = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "projxon")
     data = request.json() 
