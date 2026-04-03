@@ -5,14 +5,12 @@ from flask import Flask, Blueprint, request
 from flask_cors import CORS, cross_origin   
 import mysql.connector as sql
 
-
-
 db = Blueprint("db", __name__) 
 
 
 db.route("/sendInfo", methods = ["POST"]) 
 def sendInfo():   
-    db = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "projxon")
+    conn = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "projxon")
     data = request.json() 
     first_name = data["firstName"] 
     last_name = data["lastName"] 
@@ -23,9 +21,9 @@ def sendInfo():
     insert_data = (first_name, last_name, primary_role, secondary_role, role_applied)  
     query = "insert into applicants values (%s,%s,%s,%s,%s)"  
 
-    cur = db.cursor()
+    cur = conn.cursor()
     cur.execute(query, insert_data) 
-    db.commit() 
+    conn.commit() 
     """ 
     using mySQL until bigQuery works/is up and running
     """
