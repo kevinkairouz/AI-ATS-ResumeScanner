@@ -52,7 +52,8 @@ def upload():
         return "ERROR, INVALID FILENAME" 
     else: 
         a = predict(pdf) 
-          
+        pfit = a.PrimaryFit 
+
         #then get the first_name and last_name and the primrary_role turn that into a record 
         # make the object and return it to frontend bc the job portal wont use what is returned
         # from function but web application will use it percisley the first_name, last_name and the roles 

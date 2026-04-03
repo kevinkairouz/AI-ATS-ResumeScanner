@@ -41,12 +41,12 @@ model = RandomForestClassifier(n_estimators=400, max_depth=100)
 model.fit(X_train_data, Y_train)
  
 
-@dataclass
-class Applicant:    
-    PrimaryFit: str 
-    Secondary: str 
-    PrimaryScore: float 
-    SecondaryScore: float 
+# @dataclass
+# class Applicant:    
+#     PrimaryFit: str 
+#     Secondary: str 
+#     PrimaryScore: float 
+#     SecondaryScore: float 
 
 
 class CategoryManager: 
@@ -55,7 +55,8 @@ class CategoryManager:
         y_predict_prba = model.predict_proba(data)
         df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False)  
-        return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
+        return (df.iloc[0]["Classes"], df.iloc[1]["Classes"]) 
+        # return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
 
         
 
