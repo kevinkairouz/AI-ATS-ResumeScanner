@@ -1,10 +1,36 @@
-#background{
-    background-color: cadetblue;
-
+.sys1{
+    background-image: linear-gradient(to bottom right, skyblue, white, skyblue);
 } 
-#word{
-    background-color: whitesmoke;
-    font-style: italic;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-}
+#welcome{
+    font-family: "Oswald"; 
+    text-decoration: underline; 
+    color: lemonchiffon;  
+    font-size: 20px; 
+    text-align: center;  
+    animation-name: headerAnimation, textSize; 
+    animation-duration: 8s;   
+    animation-fill-mode: forwards;
+
+    
+    
+    
+    
+} 
+
+@keyframes headerAnimation {
+    from {
+        color: lemonchiffon; 
+    }
+    to{
+        color: black; 
+    }
+} 
+
+@keyframes textSize { 
+    from{
+        font-size: 20px;
+    }
+    to{
+        font-size: 70px; 
+    }
+} 

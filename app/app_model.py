@@ -3,20 +3,7 @@ from flask_cors import CORS, cross_origin
 from model.resume import ResumeManager 
 from model.category import CategoryManager  
 from dataclasses import dataclass 
-from app.db import db 
-
-
-# @dataclass
-# class Record: #this is the record that we are sending to bigQuery
-#     first_name: str 
-#     last_name: str 
-#     primary_role: str 
-#     secondary_role: str 
-#     role_applied: str
-
-  
-
-
+import app.db as d 
 
 
 app = Flask(__name__) 
@@ -52,12 +39,14 @@ def upload():
         return "ERROR, INVALID FILENAME" 
     else: 
         a = predict(pdf) 
-        pfit = a.PrimaryFit 
+        pfit = a[0]
+        sfit = a[1] 
+        return d.send_data(first_name, last_name, pfit, sfit, role_applied) 
+         
+
 
         #then get the first_name and last_name and the primrary_role turn that into a record 
         # make the object and return it to frontend bc the job portal wont use what is returned
         # from function but web application will use it percisley the first_name, last_name and the roles 
-         
-        return True
-
+      
 
