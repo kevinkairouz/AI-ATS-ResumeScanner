@@ -1,8 +1,9 @@
 import os 
 from model.category import Applicant
 from google.cloud import bigquery 
-from flask import Flask, Blueprint 
-from flask_cors import CORS, cross_origin  
+from flask import Flask, Blueprint, request
+from flask_cors import CORS, cross_origin   
+import mysql.connector as sql
 
 
 
@@ -10,9 +11,27 @@ db = Blueprint("db", __name__)
 
 
 db.route("/sendInfo", methods = ["POST"]) 
-def sendInfo():  
-    client = bigquery.Client()
-    query = "insert into resumeSystem.applicants values ()"
-    #this will send data to BigQuery
+def sendInfo():   
+    db = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "projxon")
+    data = request.json() 
+    first_name = data["firstName"] 
+    last_name = data["lastName"] 
+    primary_role = data["primaryRole"] 
+    secondary_role = data["secondaryRole"] 
+    role_applied = data["roleApplied"] 
 
-    return None
+    insert_data = (first_name, last_name, primary_role, secondary_role, role_applied)  
+    query = "insert into applicants values (%s,%s,%s,%s,%s)"  
+
+    cur = db.cursor()
+    cur.execute(query, insert_data) 
+    db.commit() 
+    """ 
+    using mySQL until bigQuery works/is up and running
+    """
+    return "Success"
+
+
+    
+
+
