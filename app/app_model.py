@@ -20,7 +20,7 @@ from dataclasses import dataclass
 
 app = Flask(__name__) 
 CORS(app)  
-app_model = Blueprint("app_model")
+app_model = Blueprint("app_model", __name__)
 
 
 
