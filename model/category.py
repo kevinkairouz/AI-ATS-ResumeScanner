@@ -1,18 +1,10 @@
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier  
-from sklearn.ensemble import VotingClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer   
 from sklearn.model_selection import train_test_split  
-from sklearn.ensemble import GradientBoostingClassifier  
-from dataclasses import dataclass 
 
-
-#V2 model will use the following new dataset (dataset.txt) 
-#For App.py we may have to change the filepath
 df = pd.read_csv("data/Dataset.txt") 
-
-
 #Cleaning Data
 records_keep = df[(df["Category"] == "Consultant") | (df["Category"] == "Business Analyst") | (df["Category"] == "Digital Media")
                   | (df["Category"] == "Human Resources") | (df["Category"] == "Blockchain") | 
@@ -40,15 +32,6 @@ X_test_data = tf.transform(X_test)
 model = RandomForestClassifier(n_estimators=400, max_depth=100)
 model.fit(X_train_data, Y_train)
  
-
-# @dataclass
-# class Applicant:    
-#     PrimaryFit: str 
-#     Secondary: str 
-#     PrimaryScore: float 
-#     SecondaryScore: float 
-
-
 class CategoryManager: 
     def makePrediction(self, text):   
         data = tf.transform([text])  
@@ -56,7 +39,6 @@ class CategoryManager:
         df = pd.DataFrame({"Classes": model.classes_, "Match": y_predict_prba[0].round(3) * 100}) 
         df = df.sort_values(by="Match", ascending=False)  
         return (df.iloc[0]["Classes"], df.iloc[1]["Classes"]) 
-        # return Applicant(df.iloc[0]["Classes"], df.iloc[1]["Classes"])
 
         
 

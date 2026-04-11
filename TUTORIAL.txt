@@ -1,0 +1,2 @@
+This will be designed as a web tool for recruiters who are unsure about if a candidat is a good role or not 
+designed to help recruiters see best primary and secondary fit

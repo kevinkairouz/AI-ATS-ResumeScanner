@@ -5,14 +5,14 @@ from flask_cors import CORS, cross_origin
 import mysql.connector as sql 
 import mysql.connector.errors as e 
 
+#TODO: fix schema for the database
 
 
-def send_data(first_name, last_name, primary_role, secondary_role, role_applied): 
+def send_data(primary_role, secondary_role): 
     conn = sql.connect(host = "localhost", user = "root", password = "Dominics1", database = "projxon")
     cursor = conn.cursor() 
-    insertData = (first_name, last_name, primary_role, secondary_role, role_applied) 
-    query = "insert into applicants values (%s,%s,%s,%s,%s)" 
-
+    insertData = (primary_role, secondary_role) 
+    query = "insert into applicants values (%s,%s)" 
     try: 
         cursor.execute(query, insertData) 
         conn.commit()

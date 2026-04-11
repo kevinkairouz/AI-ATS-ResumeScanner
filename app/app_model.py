@@ -30,19 +30,18 @@ def greet():
 def upload():
     pdf = request.files["file"] 
     data = request.json() 
-    first_name = data["first_name"] 
-    last_name = data["last_name"] 
-    email = data["email"]
-    role_applied = data["role_applied"]
-
     if pdf.filename == "": 
         return "ERROR, INVALID FILENAME" 
     else: 
         a = predict(pdf) 
         pfit = a[0]
         sfit = a[1] 
-        return d.send_data(first_name, last_name, pfit, sfit, role_applied) 
+        d.send_data(pfit, sfit) 
+        return jsonify({"Primary Fit": pfit, "Secondary Fit": sfit}) 
          
+
+#returning to the front end is the primary and the secondary fit for such candidate and we send it to the frontend 
+
 
 
         #then get the first_name and last_name and the primrary_role turn that into a record 
