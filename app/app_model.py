@@ -3,7 +3,6 @@ from flask_cors import CORS, cross_origin
 from model.resume import ResumeManager 
 from model.category import CategoryManager  
 from dataclasses import dataclass 
-import app.db as d 
 
 
 app = Flask(__name__) 
@@ -36,16 +35,7 @@ def upload():
         a = predict(pdf) 
         pfit = a[0]
         sfit = a[1] 
-        d.send_data(pfit, sfit) 
         return jsonify({"Primary Fit": pfit, "Secondary Fit": sfit}) 
          
 
 #returning to the front end is the primary and the secondary fit for such candidate and we send it to the frontend 
-
-
-
-        #then get the first_name and last_name and the primrary_role turn that into a record 
-        # make the object and return it to frontend bc the job portal wont use what is returned
-        # from function but web application will use it percisley the first_name, last_name and the roles 
-      
-
